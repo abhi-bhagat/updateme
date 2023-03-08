@@ -1,0 +1,34 @@
+@use "./colors.scss" as *;
+@use "./variables" as *;
+@use "./mixins" as *;
+
+body {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+
+	font-size: $mobile-body;
+
+	@include tablet {
+		font-size: $desktop-font;
+	}
+}
+img {
+	height: auto;
+	width: 100%;
+}
+//headings
+h1 {
+	font-size: $mobile-heading;
+	@include tablet {
+		font-size: $desktop-heading;
+	}
+}
+h2 {
+	font-size: $mobile-subheading;
+	@include tablet {
+		font-size: $desktop-subheading;
+	}
+}
+h3 {
+}

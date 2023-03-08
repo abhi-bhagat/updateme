@@ -1,0 +1,79 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/colors.scss" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.login {
+	background-color: $primary_color;
+    height: 100vh;
+    width: 100vw;
+    padding: 4rem 0;
+	&_container {
+		background-color: $primary_color--light;
+		width: 80%;
+		margin: 0 auto;
+		padding: 2rem 1.5rem;
+		border-radius: 0.5rem;
+
+		// height: 80vh;
+		@include tablet {
+			// height: auto;
+		}
+		&--left {
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			justify-content: center;
+
+			&_heading {
+				color: $accent_color;
+				font-size: 2.5rem;
+			}
+			&_subheading {
+				color: white;
+				font-size: 1.5rem;
+				margin-top: 0.5rem;
+			}
+		}
+
+		&--right {
+			&_form {
+				margin: 2rem 0;
+				&_section {
+					display: flex;
+					flex-direction: column;
+					margin-top: 1rem;
+					label {
+						font-size: $mobile-secondary-font;
+						text-transform: uppercase;
+						color: white;
+						margin-bottom: 0.5rem;
+					}
+					input {
+						height: 2rem;
+						border-radius: 0.25rem;
+						border: none;
+						padding: 0.5rem 1rem;
+						font-size: $mobile-body;
+						&:focus {
+							outline: 2px solid $accent_color;
+
+							// outline: none;
+						}
+					}
+					button {
+						background-color: $accent_color;
+						color: white;
+						border-radius: 0.25rem;
+						border: none;
+						height: 3rem;
+						font-size: $mobile-body;
+						text-transform: uppercase;
+						margin-top: 1rem;
+						padding: 0.5rem 1rem;
+					}
+				}
+			}
+		}
+	}
+}
