@@ -5,49 +5,104 @@
 
 .login {
 	background-color: $primary_color;
-    height: 100vh;
-    width: 100vw;
-    padding: 4rem 0;
+	height: 100vh;
+	width: 100vw;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	@include tablet {
+		padding: 0;
+	}
 	&_container {
 		background-color: $primary_color--light;
 		width: 80%;
-		margin: 0 auto;
-		padding: 2rem 1.5rem;
+		margin: 3 auto;
+		padding: 1rem 1.5rem;
 		border-radius: 0.5rem;
 
-		// height: 80vh;
 		@include tablet {
-			// height: auto;
+			min-height: 80vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+		}
+		&--middle {
+			@include tablet {
+				position: absolute;
+				bottom: 0%;
+				// top: 0;
+				opacity: 0.1;
+			}
+			@include tablet {
+				img {
+					width: 100%;
+					height: 45rem;
+				}
+			}
 		}
 		&--left {
 			display: flex;
 			align-items: center;
 			flex-direction: column;
 			justify-content: center;
+			@include tablet {
+				width: 50%;
+				z-index: 1;
+				padding: 3rem 3rem;
+				min-height: 20rem;
+				justify-content: flex-start;
+			}
 
 			&_heading {
 				color: $accent_color;
 				font-size: 2.5rem;
+                @include tablet{
+                    // margin: 1rem 0;
+                    font-size: 3rem;
+                }
+                @include desktop{
+                    font-size: 4rem;
+                }
 			}
 			&_subheading {
 				color: white;
 				font-size: 1.5rem;
 				margin-top: 0.5rem;
+				text-align: center;
+                @include tablet{
+                    margin: 2rem 0;
+                    font-size: 2rem;
+                }
 			}
 		}
 
 		&--right {
+			@include tablet {
+				width: 50%;
+				z-index: 1;
+			}
 			&_form {
 				margin: 2rem 0;
+				@include desktop {
+					padding: 3rem;
+				}
 				&_section {
 					display: flex;
 					flex-direction: column;
 					margin-top: 1rem;
+					@include tablet {
+						margin: 2rem 0;
+					}
 					label {
 						font-size: $mobile-secondary-font;
 						text-transform: uppercase;
 						color: white;
 						margin-bottom: 0.5rem;
+						@include tablet {
+							margin-bottom: 0.75rem;
+						}
 					}
 					input {
 						height: 2rem;
@@ -57,8 +112,6 @@
 						font-size: $mobile-body;
 						&:focus {
 							outline: 2px solid $accent_color;
-
-							// outline: none;
 						}
 					}
 					button {
@@ -71,6 +124,12 @@
 						text-transform: uppercase;
 						margin-top: 1rem;
 						padding: 0.5rem 1rem;
+						cursor: pointer;
+						@include tablet {
+							&:hover {
+								background-color: rgba($color: $accent_color, $alpha: 0.8);
+							}
+						}
 					}
 				}
 			}
