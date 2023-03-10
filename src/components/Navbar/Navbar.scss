@@ -1,0 +1,113 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/colors.scss" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.navbar {
+	margin: 0;
+	background-color: $primary_color;
+	height: 3rem;
+	padding: 1rem 0;
+	&_container {
+		width: 90%;
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		&_left {
+			img {
+				// width: 20%;
+				height: 3rem;
+				cursor: pointer;
+			}
+		}
+		&_middle {
+			height: 3rem;
+			&_city {
+				text-transform: uppercase;
+				color: $accent_color;
+				text-align: center;
+				font-size: 1.05rem;
+				font-weight: bold;
+				margin-bottom: 0.25rem;
+				@include tablet {
+					font-size: 1.25rem;
+				}
+			}
+			&_date {
+				color: white;
+				text-align: center;
+				font-size: $mobile-secondary-font;
+				@include tablet {
+					font-size: $desktop-secondary-font;
+				}
+			}
+		}
+		&_right {
+			@include tablet {
+				width: 20%;
+				max-width: 10rem;
+			}
+			&--mobile {
+				cursor: pointer;
+				@include tablet {
+					display: none;
+				}
+
+				&_list-container {
+					position: absolute;
+					top: 4rem;
+					bottom: 0;
+					right: 0;
+					left: 0;
+					background-color: $primary_color;
+					&_list {
+						display: flex;
+						// justify-content: space-around;
+						align-items: center;
+						flex-direction: column;
+						padding: 2rem 0;
+						height: 70vh;
+						&_listitem {
+							height: 4rem;
+							font-size: $mobile-subheading;
+							text-transform: uppercase;
+							display: flex;
+							align-items: center;
+							margin: 1rem 0;
+							width: 100%;
+							justify-content: center;
+							color: white;
+							&:hover {
+								background-color: $accent_color;
+							}
+						}
+					}
+				}
+			}
+			&--tablet {
+				display: none;
+				@include tablet {
+					display: block;
+				}
+				&-list {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					height: 3rem;
+					&_listitem {
+						color: white;
+						text-transform: uppercase;
+						font-size: $desktop-secondary-font;
+						cursor: pointer;
+
+						&:hover {
+							color: $accent_color;
+						}
+					}
+				}
+			}
+		}
+	}
+}

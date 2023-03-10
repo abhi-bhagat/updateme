@@ -33,7 +33,7 @@
 				position: absolute;
 				bottom: 0%;
 				// top: 0;
-				opacity: 0.1;
+				opacity: 0.15;
 			}
 			@include tablet {
 				img {
@@ -58,23 +58,23 @@
 			&_heading {
 				color: $accent_color;
 				font-size: 2.5rem;
-                @include tablet{
-                    // margin: 1rem 0;
-                    font-size: 3rem;
-                }
-                @include desktop{
-                    font-size: 4rem;
-                }
+				@include tablet {
+					// margin: 1rem 0;
+					font-size: 3rem;
+				}
+				@include desktop {
+					font-size: 4rem;
+				}
 			}
 			&_subheading {
 				color: white;
 				font-size: 1.5rem;
 				margin-top: 0.5rem;
 				text-align: center;
-                @include tablet{
-                    margin: 2rem 0;
-                    font-size: 2rem;
-                }
+				@include tablet {
+					margin: 2rem 0;
+					font-size: 2rem;
+				}
 			}
 		}
 
@@ -131,8 +131,31 @@
 							}
 						}
 					}
+
+					&_autoresult {
+						background-color: white;
+						margin-top: 0.25rem;
+						// padding: 0.5rem 1rem;
+						border-radius: 0.25rem;
+
+						&_item {
+							list-style-type: none;
+							border-bottom: 1px solid $accent_color;
+							padding: 0.5rem 1rem;
+							border-radius: 0.25rem;
+
+							cursor: pointer;
+							&:hover {
+								background-color: rgba($color: $accent_color, $alpha: 0.8);
+							}
+						}
+					}
 				}
 			}
 		}
 	}
+}
+
+#myAuto {
+	position: relative;
 }

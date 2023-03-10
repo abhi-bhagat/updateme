@@ -31,4 +31,8 @@ h2 {
 	}
 }
 h3 {
+	font-size: $mobile-secondary-font;
+	@include tablet {
+		font-size: $desktop-secondary-font;
+	}
 }

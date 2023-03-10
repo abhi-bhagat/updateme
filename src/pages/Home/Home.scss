@@ -1,0 +1,18 @@
+
+
+
+
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/colors.scss" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+
+.homepage{
+    background-color: $background;
+    padding: 2rem 0;
+    &-container{
+        width: 90%;
+        margin: 0rem auto;
+    }
+}

@@ -1,0 +1,21 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/colors.scss" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.quote-container {
+	border-radius: 0.25rem;
+	padding: 2rem;
+	background-color: white;
+	@include tablet {
+		max-width: 20rem;
+	}
+	// margin: 2rem;
+	p {
+		line-height: 1.15;
+	}
+	h3 {
+		margin: 1rem 0;
+		text-align: right;
+	}
+}
