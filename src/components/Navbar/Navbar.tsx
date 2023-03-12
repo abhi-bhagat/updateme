@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import Hamburger from "hamburger-react";
 
 // icons
-import { GrSettingsOption, GrLogout,GrLocationPin } from "react-icons/gr";
+import { GrSettingsOption, GrLogout, GrLocationPin } from "react-icons/gr";
 
 const Navbar = (): JSX.Element => {
 	const navigate = useNavigate();
@@ -40,6 +40,10 @@ const Navbar = (): JSX.Element => {
 	};
 	const settingClickHandler = (e: React.MouseEvent): void => {
 		setShowSettings(!showSettings);
+	};
+	const logoutHandler = (e: React.MouseEvent): void => {
+		localStorage.removeItem("data");
+		navigate("/");
 	};
 	return (
 		<div className="navbar">
@@ -119,7 +123,10 @@ const Navbar = (): JSX.Element => {
 										change location
 									</li>
 
-									<li className="navbar_container_right--tablet_settings_list-item">
+									<li
+										className="navbar_container_right--tablet_settings_list-item"
+										onClick={logoutHandler}
+									>
 										<GrLogout className="navbar_container_right--tablet_settings_list-item_icon" />
 										logout
 									</li>

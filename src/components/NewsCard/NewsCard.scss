@@ -14,6 +14,7 @@
 			height: 100%;
 			max-height: 10rem;
 			object-fit: cover;
+            border-radius: .5rem;
 		}
 		@include tablet {
 			width: 30%;
@@ -25,14 +26,19 @@
 		}
 	}
 	&_body {
+        margin-top: 1rem;
 		@include tablet {
 			width: 70%;
+            margin-top: 0;
 		}
 		&_title {
 			&_heading {
 				font-size: 1rem;
+                margin-bottom: .5rem;
 				@include tablet {
 					font-size: 1.25rem;
+                margin-bottom: .75rem;
+
 				}
 			}
 		}
