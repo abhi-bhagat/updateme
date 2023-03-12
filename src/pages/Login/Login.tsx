@@ -1,39 +1,91 @@
 import "./Login.scss";
+//types
+import { place, FormattedPlace } from "../../types/places";
+import { UserData } from "../../types/userData";
 //
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Axios } from "axios";
-import { GeocoderAutocomplete } from "@geoapify/geocoder-autocomplete";
-
+import axios from "axios";
+import { GrClose } from "react-icons/gr";
 //assets
 import loginBack from "../../assets/svg/loginBack.svg";
 //
 const Login = (): JSX.Element => {
-	// const API: string = process.env.REACT_APP_PLACE_API_KEY!;
-	// const autocomplete = new GeocoderAutocomplete(
-	// 	document.getElementById("#myAuto")!,
-	// 	API
-	// );
-
 	const navigate: NavigateFunction = useNavigate();
 
+	useEffect(()=>{
+		const savedInfo = localStorage.getItem("data");
+		console.log(savedInfo, `i am saved`);
+		if (savedInfo!==null) {
+			navigate("/home");
+		}
+
+	})
+
+
+	const API: string = process.env.REACT_APP_PLACE_API_KEY!;
+
+	//state upates
+	const [fname, setfname] = useState<string>("");
+	const [email, setEmail] = useState<string>("");
+	const [location, setLocation] = useState<string>("");
+	const [place, setPlace] = useState<FormattedPlace[]>([]);
+	const [placeToggler, setPlaceToggler] = useState<boolean>(false);
+
+	//get data
+	const getData = () => {
+		var config = {
+			method: "get",
+			url: `https://api.geoapify.com/v1/geocode/autocomplete?text=${location}&apiKey=3745a9edd64a411d8f8204d91751340f`,
+			headers: {},
+		};
+
+		axios(config)
+			.then((res) => {
+				if (res.data.features.length > 0) {
+					const placesArray: FormattedPlace[] = [];
+					res.data.features.forEach((element: place) => {
+						placesArray.push({ readPlace: element.properties.formatted });
+					});
+					setPlace(placesArray);
+					setPlaceToggler(true);
+				}
+				if (res.data.features.length <= 0) {
+					setPlaceToggler(false);
+				}
+			})
+			.catch((err) => console.log(`error fetching data`, err));
+	};
+	//
 	//handlers
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		//* add login logic here!!
+		const userInfo: UserData = {
+			name: fname,
+			place: location,
+		};
+		localStorage.setItem("data", JSON.stringify(userInfo));
 		navigate("/home");
 		setfname("");
 		setEmail("");
 		setLocation("");
 	};
 	const placeClickHandler = (e: React.PointerEvent<HTMLLIElement>) => {
-		console.log(e.currentTarget.innerHTML);
+		const city = e.currentTarget.innerHTML;
+		setLocation(city);
+		setPlaceToggler(false);
 	};
-	//state upates
-	const [fname, setfname] = useState<string>("");
-	const [email, setEmail] = useState<string>("");
-	const [location, setLocation] = useState<string>("");
+
+	const placeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setLocation(e.target.value);
+		getData();
+	};
+	const placeInputCloseHandler = (e: React.MouseEvent) => {
+		setPlaceToggler(false);
+	};
+
+	//
 	return (
 		<div className="login">
 			<div className="login_container">
@@ -59,6 +111,7 @@ const Login = (): JSX.Element => {
 								name="fullName"
 								id="fullName"
 								value={fname}
+								autoComplete="off"
 								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 									setfname(e.target.value)
 								}
@@ -67,32 +120,43 @@ const Login = (): JSX.Element => {
 							/>
 						</div>
 
-						<div className="login_container--right_form_section" id="myAuto">
+						<div className="login_container--right_form_section">
 							<label htmlFor="location">Location</label>
-							<input
-								type="location"
-								name="location"
-								id="location"
-								required
-								placeholder="Please enter your location..."
-								value={location}
-								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-									setLocation(e.target.value)
-								}
-							/>
-							<div className="login_container--right_form_section_autoresult">
-								<li
-									className="login_container--right_form_section_autoresult_item"
-									onClick={placeClickHandler}
-								>
-									abhi
-								</li>
-								<li className="login_container--right_form_section_autoresult_item">
-									abhi
-								</li>
-								<li className="login_container--right_form_section_autoresult_item">
-									abhi
-								</li>
+							<div className="login_container--right_form_section_input">
+								<input
+									type="location"
+									name="location"
+									id="location"
+									required
+									placeholder="Please enter your city name..."
+									value={location}
+									autoComplete="off"
+									className="login_container--right_form_section_input"
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+										placeInputHandler(e)
+									}
+								/>
+								{placeToggler && (
+									<GrClose
+										className="login_container--right_form_section_icon"
+										onClick={placeInputCloseHandler}
+									/>
+								)}
+								{placeToggler && (
+									<div className="login_container--right_form_section_autoresult">
+										{place.map((place, index) => {
+											return (
+												<li
+													key={index}
+													className="login_container--right_form_section_autoresult_item"
+													onClick={placeClickHandler}
+												>
+													{place.readPlace}
+												</li>
+											);
+										})}
+									</div>
+								)}
 							</div>
 						</div>
 						<div className="login_container--right_form_section">

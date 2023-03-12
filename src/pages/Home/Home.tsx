@@ -1,5 +1,6 @@
 import Navbar from "../../components/Navbar/Navbar";
 import Quote from "../../components/Quote/Quote";
+import NewsCard from "../../components/NewsCard/NewsCard";
 import "./Home.scss";
 
 const Home = (): JSX.Element => {
@@ -9,7 +10,19 @@ const Home = (): JSX.Element => {
 
 			<div className="homepage">
 				<div className="homepage-container">
-					<Quote />
+					<div className="homepage-container_sidebar">
+						<div className="homepage-container_quote">
+							<Quote />
+						</div>
+						<div className="homepage-container_tags">
+							<li>∂ tags</li>
+							<li>∂ tags</li>
+							<li>∂ tags</li>
+						</div>
+					</div>
+					<div className="homepage-container_news">
+						<NewsCard date={""} image="" heading="" content="" />
+					</div>
 				</div>
 			</div>
 		</>

@@ -110,6 +110,7 @@
 						border: none;
 						padding: 0.5rem 1rem;
 						font-size: $mobile-body;
+						// width: 100%;
 						&:focus {
 							outline: 2px solid $accent_color;
 						}
@@ -134,9 +135,15 @@
 
 					&_autoresult {
 						background-color: white;
-						margin-top: 0.25rem;
+						margin-top: -.5rem;
 						// padding: 0.5rem 1rem;
 						border-radius: 0.25rem;
+                        max-height: 6rem;
+                        overflow: scroll;
+                        position: absolute;
+                        top: 4rem;
+                        z-index: 1;
+                        width: 100%;
 
 						&_item {
 							list-style-type: none;
@@ -149,13 +156,40 @@
 								background-color: rgba($color: $accent_color, $alpha: 0.8);
 							}
 						}
+
+                        @include tablet{
+                            max-height: 10rem;
+                        }
 					}
+
+					&_input {
+						position: relative;
+						width: auto;
+						height: 2rem;
+
+						input {
+							width: -webkit-fill-available;
+							height: 2rem;
+							border-radius: 0.25rem;
+							border: none;
+							padding: 0.5rem 1rem;
+							font-size: $mobile-body;
+							// width: 100%;
+							&:focus {
+								outline: 2px solid $accent_color;
+							}
+						}
+					}
+					&_icon {
+						position: absolute;
+						right: 0.5rem;
+						top: 45%;
+						bottom: 0;
+						cursor: pointer;
+					}
+					
 				}
 			}
 		}
 	}
-}
-
-#myAuto {
-	position: relative;
 }

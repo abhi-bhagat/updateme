@@ -16,6 +16,11 @@
 		justify-content: space-between;
 
 		&_left {
+			width: 10%;
+			@include tablet {
+				width: 10%;
+				max-width: 3rem;
+			}
 			img {
 				// width: 20%;
 				height: 3rem;
@@ -46,8 +51,8 @@
 		}
 		&_right {
 			@include tablet {
-				width: 20%;
-				max-width: 10rem;
+				width: 25%;
+				max-width: 12rem;
 			}
 			&--mobile {
 				cursor: pointer;
@@ -90,6 +95,7 @@
 				display: none;
 				@include tablet {
 					display: block;
+					position: relative;
 				}
 				&-list {
 					display: flex;
@@ -105,6 +111,59 @@
 						&:hover {
 							color: $accent_color;
 						}
+						&_setting-icon {
+							&:hover {
+								path {
+									stroke: $accent_color;
+								}
+							}
+							path {
+								color: white;
+								stroke: white;
+							}
+						}
+					}
+				}
+				&_settings {
+					position: absolute;
+					background-color: white;
+					padding: 1rem 0.25rem;
+					// border-radius: 0.25rem;
+					top: 3rem;
+					right: 0;
+					width: 15rem;
+
+					&_list-item {
+						// border: 1px solid black;
+						text-transform: uppercase;
+						font-size: $desktop-secondary-font;
+						padding: 0.5rem;
+						// margin-bottom: .5rem;
+						display: flex;
+						align-items: center;
+						&:hover {
+							background-color: rgba($color: $accent-color, $alpha: 0.8);
+							color: white;
+							cursor: pointer;
+							.navbar_container_right--tablet_settings_list-item_icon {
+								path {
+									stroke: white;
+								}
+							}
+						}
+						&_icon {
+							margin-right: 1rem;
+						}
+					}
+					&_triangle {
+						position: absolute;
+						right: 0;
+						top: -0.5rem;
+						width: 0;
+						height: 0;
+						border-left: .5rem solid transparent;
+						border-right: .5rem solid transparent;
+						border-bottom: .5rem solid white;
 					}
 				}
 			}

@@ -44,6 +44,7 @@ const Quote = (): JSX.Element => {
 
 	return (
 		<div className="quote-container">
+			<h2>Quote :</h2>
 			{myData && <p>{myData.content}</p>}
 
 			{myData && <h3>{myData.author}</h3>}

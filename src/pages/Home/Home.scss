@@ -1,18 +1,36 @@
-
-
-
-
 @use "../../styles/partials/global" as *;
 @use "../../styles/partials/colors.scss" as *;
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
+.homepage {
+	background-color: $background;
+	padding: 1rem 0;
+	min-height: 85vh;
+	&-container {
+		width: 90%;
+		margin: 0rem auto;
+		@include tablet {
+			display: flex;
+		}
+        &_sidebar{
+            @include tablet{
+                width: 30%;
+                order: 2;
+                margin-left: 1rem;
+            }
+            @include desktop{
+                width: 25%;
+            }
 
-.homepage{
-    background-color: $background;
-    padding: 2rem 0;
-    &-container{
-        width: 90%;
-        margin: 0rem auto;
-    }
+        }
+        &_news{
+            @include tablet{
+                width: 70%;
+            }
+            @include desktop{
+                width: 75%;
+            }
+        }
+	}
 }
