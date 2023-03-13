@@ -13,15 +13,13 @@ import loginBack from "../../assets/svg/loginBack.svg";
 const Login = (): JSX.Element => {
 	const navigate: NavigateFunction = useNavigate();
 
-	useEffect(()=>{
+	useEffect(() => {
 		const savedInfo = localStorage.getItem("data");
-		console.log(savedInfo, `i am saved`);
-		if (savedInfo!==null) {
+
+		if (savedInfo !== null) {
 			navigate("/home");
 		}
-
-	})
-
+	});
 
 	const API: string = process.env.REACT_APP_PLACE_API_KEY!;
 
@@ -36,7 +34,7 @@ const Login = (): JSX.Element => {
 	const getData = () => {
 		var config = {
 			method: "get",
-			url: `https://api.geoapify.com/v1/geocode/autocomplete?text=${location}&apiKey=3745a9edd64a411d8f8204d91751340f`,
+			url: `https://api.geoapify.com/v1/geocode/autocomplete?text=${location}&apiKey=${API}`,
 			headers: {},
 		};
 
