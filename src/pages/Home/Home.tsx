@@ -3,34 +3,65 @@ import Quote from "../../components/Quote/Quote";
 import NewsCard from "../../components/NewsCard/NewsCard";
 import "./Home.scss";
 import axios from "axios";
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
+//types
+import { NewsDataType } from "../../types/newsData";
+//
+//utils
+import { getDate } from "../../utils/getDate";
+import { Link } from "react-router-dom";
+//
+// data
+import tempNews from "../../data/temp.json";
+//
 const Home = (): JSX.Element => {
 	const API: string = process.env.REACT_APP_NEWS_API_KEY!;
-	console.log(API);
-	
 	const URL: string = `https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=us&max=5&apikey=${API}`;
-
-	//useEffect
-	useEffect(() => {
-		getData();
-	}, []);
-
+	//states
+	const [news, setNews] = useState<NewsDataType[]>([]);
+	const [fallbackNews, setFallbackNews] = useState<NewsDataType[]>([]);
+	const [updatedNews, setUpdatedNews] = useState<boolean>(false);
+	const [date, setDate] = useState<string>()!;
 	//handlers
 	const getData = () => {
 		axios
 			.get(URL)
 			.then((res) => {
-				console.log(res.data);
+				setDate(getDate());
+				console.log(res.data.articles);
+				if (res.data.length <= 0) {
+					setNews([]);
+				} else {
+					setNews(res.data.articles);
+					setFallbackNews(res.data);
+					setUpdatedNews(false);
+				}
 			})
-			.catch((e) => console.log(`Error fetching news`, e));
+			.catch((e) => {
+				console.log(`Error fetching news`);
+				setUpdatedNews(true);
+				setNews(tempNews.articles);
+			});
 	};
+	//useEffect
+	useEffect(() => {
+		getData();
+	}, []);
 
 	return (
 		<>
 			<Navbar />
 
 			<div className="homepage">
+				{updatedNews && (
+					<div className="homepage--fallback">
+						<p>
+							NOTE: Due to limited number of requests that we can make to our
+							API per day, we are showing the pre-saved news. Please check back
+							for updated news
+						</p>
+					</div>
+				)}
 				<div className="homepage-container">
 					<div className="homepage-container_sidebar">
 						<div className="homepage-container_quote">
@@ -42,8 +73,20 @@ const Home = (): JSX.Element => {
 							<li>∂ tags</li>
 						</div>
 					</div>
+
 					<div className="homepage-container_news">
-						<NewsCard date={""} image="" heading="" content="" />
+						{news.map((news) => {
+							return (
+								<Link key={news.url} to={`${news.url}`}>
+									<NewsCard
+										date={news.publishedAt}
+										image={news.image}
+										heading={news.title}
+										content={news.description}
+									/>
+								</Link>
+							);
+						})}
 					</div>
 				</div>
 			</div>

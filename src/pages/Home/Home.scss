@@ -7,30 +7,43 @@
 	background-color: $background;
 	padding: 1rem 0;
 	min-height: 85vh;
+	&--fallback {
+		background-color: rgba($color: $primary_color, $alpha: 0.4);
+		width: 90%;
+		margin: 1rem auto;
+		border-radius: 0.25rem;
+		padding: 1rem ;
+        box-sizing: border-box;
+
+	}
 	&-container {
 		width: 90%;
 		margin: 0rem auto;
 		@include tablet {
 			display: flex;
 		}
-        &_sidebar{
-            @include tablet{
-                width: 30%;
-                order: 2;
-                margin-left: 1rem;
-            }
-            @include desktop{
-                width: 25%;
-            }
-
-        }
-        &_news{
-            @include tablet{
-                width: 70%;
-            }
-            @include desktop{
-                width: 75%;
-            }
-        }
+		&_sidebar {
+			@include tablet {
+				width: 30%;
+				order: 2;
+				margin-left: 1rem;
+			}
+			@include desktop {
+				width: 25%;
+			}
+		}
+		&_news {
+			a{
+				text-decoration: none;
+				color: inherit;
+			}
+			
+			@include tablet {
+				width: 70%;
+			}
+			@include desktop {
+				width: 75%;
+			}
+		}
 	}
 }

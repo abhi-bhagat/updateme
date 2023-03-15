@@ -5,10 +5,12 @@
 
 .news-card {
 	// width: 100%;
+    margin-bottom: 1rem;
 
 	padding: 1rem;
 	background-color: white;
 	border-radius: 0.5rem;
+    cursor: pointer;
 	&_image {
 		img {
 			height: 100%;
@@ -34,6 +36,7 @@
 		&_title {
 			&_heading {
 				font-size: 1rem;
+                color: $primary_color;
                 margin-bottom: .5rem;
 				@include tablet {
 					font-size: 1.25rem;
