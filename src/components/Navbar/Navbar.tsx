@@ -26,7 +26,7 @@ const Navbar = (): JSX.Element => {
 			const savedInfo: UserData = JSON.parse(localInfo);
 			setCity(savedInfo.place);
 		}
-	});
+	}, []);
 	//handlers
 
 	const logoClickHandler = (e: React.MouseEvent) => {
@@ -81,7 +81,10 @@ const Navbar = (): JSX.Element => {
 									<li className="navbar_container_right--mobile_list-container_list_listitem">
 										Change Location
 									</li>
-									<li className="navbar_container_right--mobile_list-container_list_listitem">
+									<li
+										className="navbar_container_right--mobile_list-container_list_listitem"
+										onClick={logoutHandler}
+									>
 										Logout
 									</li>
 								</ul>

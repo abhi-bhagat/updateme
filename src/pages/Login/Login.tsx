@@ -22,10 +22,10 @@ const Login = (): JSX.Element => {
 	});
 
 	const API: string = process.env.REACT_APP_PLACE_API_KEY!;
-
+	const placesArray: FormattedPlace[] = [];
 	//state upates
 	const [fname, setfname] = useState<string>("");
-	const [email, setEmail] = useState<string>("");
+	// const [email, setEmail] = useState<string>("");
 	const [location, setLocation] = useState<string>("");
 	const [place, setPlace] = useState<FormattedPlace[]>([]);
 	const [placeToggler, setPlaceToggler] = useState<boolean>(false);
@@ -34,16 +34,21 @@ const Login = (): JSX.Element => {
 	const getData = () => {
 		var config = {
 			method: "get",
-			url: `https://api.geoapify.com/v1/geocode/autocomplete?text=${location}&apiKey=${API}`,
+			url: `https://api.geoapify.com/v1/geocode/autocomplete?text=${location}&type=city&apiKey=${API}`,
 			headers: {},
 		};
 
 		axios(config)
 			.then((res) => {
 				if (res.data.features.length > 0) {
-					const placesArray: FormattedPlace[] = [];
 					res.data.features.forEach((element: place) => {
-						placesArray.push({ readPlace: element.properties.formatted });
+						placesArray.push({
+							readPlace: element.properties.formatted,
+							coordinates: {
+								lat: element.properties.lat,
+								lon: element.properties.lon,
+							},
+						});
 					});
 					setPlace(placesArray);
 					setPlaceToggler(true);
@@ -64,12 +69,14 @@ const Login = (): JSX.Element => {
 			place: location,
 		};
 		localStorage.setItem("data", JSON.stringify(userInfo));
+		localStorage.setItem("coordinates", JSON.stringify(""));
 		navigate("/home");
 		setfname("");
-		setEmail("");
+		// setEmail("");
 		setLocation("");
 	};
 	const placeClickHandler = (e: React.PointerEvent<HTMLLIElement>) => {
+		console.log(e);
 		const city = e.currentTarget.innerHTML;
 		setLocation(city);
 		setPlaceToggler(false);
@@ -149,7 +156,8 @@ const Login = (): JSX.Element => {
 													className="login_container--right_form_section_autoresult_item"
 													onClick={placeClickHandler}
 												>
-													{place.readPlace}
+													{`${place.readPlace} ${place.coordinates}`}
+													
 												</li>
 											);
 										})}

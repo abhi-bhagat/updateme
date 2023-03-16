@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { NewsDataType } from "../../types/newsData";
 //
 //utils
-import { getDate } from "../../utils/getDate";
+// import { getDate } from "../../utils/getDate";
 import { Link } from "react-router-dom";
 //
 // data
@@ -19,21 +19,19 @@ const Home = (): JSX.Element => {
 	const URL: string = `https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=us&max=5&apikey=${API}`;
 	//states
 	const [news, setNews] = useState<NewsDataType[]>([]);
-	const [fallbackNews, setFallbackNews] = useState<NewsDataType[]>([]);
 	const [updatedNews, setUpdatedNews] = useState<boolean>(false);
-	const [date, setDate] = useState<string>()!;
+	// const [date, setDate] = useState<string>()!;
 	//handlers
 	const getData = () => {
 		axios
 			.get(URL)
 			.then((res) => {
-				setDate(getDate());
+				// setDate(getDate());
 				console.log(res.data.articles);
 				if (res.data.length <= 0) {
 					setNews([]);
 				} else {
 					setNews(res.data.articles);
-					setFallbackNews(res.data);
 					setUpdatedNews(false);
 				}
 			})

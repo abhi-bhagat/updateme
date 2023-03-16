@@ -42,4 +42,8 @@ export type place = {
 
 export type FormattedPlace = {
 	readPlace: string;
+	coordinates: {
+		lon: number;
+		lat: number;
+	};
 };
