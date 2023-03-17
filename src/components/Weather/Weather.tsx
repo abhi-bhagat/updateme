@@ -12,15 +12,9 @@ const Weather = (): JSX.Element => {
 	console.log(`i am test`, typeof localStorage.getItem("info"));
 
 	//states
-	const [temperature, setTemperature] = useState<number>();
-	const [weatherDescription, setWeatherDescription] = useState<string>();
-	const [min, setMin] = useState<number>(0);
-	const [max, setMax] = useState<number>(0);
-	// const [info, setInfo] = useState<FormattedPlace>();
+
 	const [weatherData, setWeatherData] = useState<WeatherData>();
-	// //vars
-	// const lat: number = 0;
-	// const lon: number = 0;
+
 	const WEATHER_API_KEY: string = process.env.REACT_APP_WEATHER_API_KEY!;
 	const WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather?`;
 	const info: FormattedPlace = JSON.parse(localStorage.getItem("info")!);
@@ -35,7 +29,6 @@ const Weather = (): JSX.Element => {
 			)
 			.then((res) => {
 				setWeatherData(res.data);
-				setTemperature(res.data.main.temp);
 			})
 			.catch((e) => console.log(`error fetching weather`, e));
 	};
