@@ -12,9 +12,8 @@
 		width: 90%;
 		margin: 1rem auto;
 		border-radius: 0.25rem;
-		padding: 1rem ;
-        box-sizing: border-box;
-
+		padding: 1rem;
+		box-sizing: border-box;
 	}
 	&-container {
 		width: 90%;
@@ -23,7 +22,12 @@
 			display: flex;
 		}
 		&_sidebar {
+			display: flex;
+			gap: 1rem;
+			margin-bottom: 1.5rem;
 			@include tablet {
+			margin-bottom: unset;
+				display: block;
 				width: 30%;
 				order: 2;
 				margin-left: 1rem;
@@ -31,13 +35,31 @@
 			@include desktop {
 				width: 25%;
 			}
+
+			&_quote {
+				width: 50%;
+				min-height: 10rem;
+				@include tablet {
+					width: auto;
+				}
+			}
+			&_weather {
+				width: 50%;
+				min-height: 10rem;
+				@include tablet {
+					width: auto;
+				}
+			}
 		}
 		&_news {
-			a{
+			&_title {
+				margin-bottom: 1rem;
+			}
+			a {
 				text-decoration: none;
 				color: inherit;
 			}
-			
+
 			@include tablet {
 				width: 70%;
 			}

@@ -25,10 +25,10 @@ const Login = (): JSX.Element => {
 	const placesArray: FormattedPlace[] = [];
 	//state upates
 	const [fname, setfname] = useState<string>("");
-	// const [email, setEmail] = useState<string>("");
 	const [location, setLocation] = useState<string>("");
 	const [place, setPlace] = useState<FormattedPlace[]>([]);
 	const [placeToggler, setPlaceToggler] = useState<boolean>(false);
+	const [info, setInfo] = useState<FormattedPlace>();
 
 	//get data
 	const getData = () => {
@@ -48,6 +48,7 @@ const Login = (): JSX.Element => {
 								lat: element.properties.lat,
 								lon: element.properties.lon,
 							},
+							country: element.properties.country_code,
 						});
 					});
 					setPlace(placesArray);
@@ -69,17 +70,22 @@ const Login = (): JSX.Element => {
 			place: location,
 		};
 		localStorage.setItem("data", JSON.stringify(userInfo));
-		localStorage.setItem("coordinates", JSON.stringify(""));
+		if (typeof info !== "undefined") {
+			localStorage.setItem("info", JSON.stringify(info));
+		}
 		navigate("/home");
 		setfname("");
-		// setEmail("");
 		setLocation("");
 	};
-	const placeClickHandler = (e: React.PointerEvent<HTMLLIElement>) => {
-		console.log(e);
+	const placeClickHandler = (
+		e: React.MouseEvent<HTMLLIElement>,
+		place: FormattedPlace
+	) => {
+		// console.log(place);
 		const city = e.currentTarget.innerHTML;
 		setLocation(city);
 		setPlaceToggler(false);
+		setInfo(place);
 	};
 
 	const placeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -154,10 +160,9 @@ const Login = (): JSX.Element => {
 												<li
 													key={index}
 													className="login_container--right_form_section_autoresult_item"
-													onClick={placeClickHandler}
+													onClick={(e) => placeClickHandler(e, place)}
 												>
-													{`${place.readPlace} ${place.coordinates}`}
-													
+													{`${place.readPlace} `}
 												</li>
 											);
 										})}

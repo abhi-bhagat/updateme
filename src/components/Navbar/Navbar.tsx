@@ -43,6 +43,9 @@ const Navbar = (): JSX.Element => {
 	};
 	const logoutHandler = (e: React.MouseEvent): void => {
 		localStorage.removeItem("data");
+		localStorage.removeItem("coordinates");
+		localStorage.removeItem("info");
+
 		navigate("/");
 	};
 	return (

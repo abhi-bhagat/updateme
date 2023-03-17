@@ -46,4 +46,5 @@ export type FormattedPlace = {
 		lon: number;
 		lat: number;
 	};
+	country: string;
 };

@@ -1,0 +1,38 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/colors.scss" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.weather {
+	padding: 1rem;
+	border-radius: 0.5rem;
+	background-color: white;
+	height: 10rem;
+
+	&_container {
+		&_title {
+			color: $accent_color;
+			height: 2rem;
+		}
+		&_body {
+			height: 6rem;
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			&_digits {
+				font-size: 2rem;
+				font-weight: bold;
+			}
+		}
+		&_footer {
+			height: 2rem;
+			font-weight: bold;
+			&_description {
+				margin-bottom: .5rem;
+			}
+			&_high {
+				margin-right: 1rem;
+			}
+		}
+	}
+}
