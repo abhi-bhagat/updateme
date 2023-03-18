@@ -4,12 +4,11 @@ import axios from "axios";
 //
 //types
 import { WeatherData } from "../../types/weatherData";
-import { UserData } from "../../types/userData";
 import { FormattedPlace } from "../../types/places";
 
 const Weather = (): JSX.Element => {
 	//
-	console.log(`i am test`, typeof localStorage.getItem("info"));
+
 
 	//states
 
@@ -32,8 +31,6 @@ const Weather = (): JSX.Element => {
 			})
 			.catch((e) => console.log(`error fetching weather`, e));
 	};
-
-	const getInfo = () => {};
 	//
 
 	useEffect(() => {
@@ -48,14 +45,16 @@ const Weather = (): JSX.Element => {
 					<span className="weather_container_body_digits">
 						{weatherData?.main.temp}°C
 					</span>{" "}
-					<img
-						src={`https://openweathermap.org/img/wn/${weatherData?.weather[0].icon}@2x.png`}
-						alt=""
-					/>
+					<span className="weather_container_body_image">
+						<img
+							src={`https://openweathermap.org/img/wn/${weatherData?.weather[0].icon}@2x.png`}
+							alt=""
+						/>
+					</span>
 				</p>
 				<p className="weather_container_footer">
 					<div className="weather_container_footer_description">
-						{weatherData?.weather[0].description}
+						{weatherData?.weather[0].main}
 					</div>{" "}
 					<span className="weather_container_footer_high">
 						H:{weatherData?.main.temp_max}

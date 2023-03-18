@@ -10,7 +10,7 @@ import { NewsDataType } from "../../types/newsData";
 import { FormattedPlace } from "../../types/places";
 //
 //utils
-import { getDate } from "../../utils/getDate";
+// import { getDate } from "../../utils/getDate";
 import { Link } from "react-router-dom";
 //
 // data
@@ -24,11 +24,11 @@ const Home = (): JSX.Element => {
 	//states
 	const [news, setNews] = useState<NewsDataType[]>([]);
 	const [updatedNewsError, setUpdatedNewsError] = useState<boolean>(false);
-	const [date, setDate] = useState<string>("")!;
-	const [tempData, setTempData] = useState<NewsDataType[]>([]);
+	// const [date, setDate] = useState<string>("")!;
+	// const [tempData, setTempData] = useState<NewsDataType[]>([]);
 	//handlers
 	const getData = () => {
-		setDate(getDate());
+		// setDate(getDate());
 		axios
 			.get(URL)
 			.then((res) => {
