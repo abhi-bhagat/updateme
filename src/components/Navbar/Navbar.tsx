@@ -11,10 +11,11 @@ import Hamburger from "hamburger-react";
 
 // icons
 import { GrSettingsOption, GrLogout, GrLocationPin } from "react-icons/gr";
+import { userInfo } from "os";
 
 const Navbar = (): JSX.Element => {
 	const navigate = useNavigate();
-
+	const user: UserData = JSON.parse(localStorage.getItem("data")!);
 	const [open, setOpen] = useState<boolean>(false);
 	const [city, setCity] = useState<string>("");
 	const [showSettings, setShowSettings] = useState<boolean>(false);
@@ -96,7 +97,7 @@ const Navbar = (): JSX.Element => {
 					</div>
 					<div className="navbar_container_right--tablet">
 						<ul className="navbar_container_right--tablet-list">
-							<li
+							{/* <li
 								className="navbar_container_right--tablet-list_listitem"
 								onClick={logoClickHandler}
 							>
@@ -108,8 +109,8 @@ const Navbar = (): JSX.Element => {
 								onClick={weatherClickHandler}
 							>
 								weather
-							</li>
-
+							</li> */}
+							Hi, {user.name}
 							<li
 								className="navbar_container_right--tablet-list_listitem"
 								onClick={settingClickHandler}
