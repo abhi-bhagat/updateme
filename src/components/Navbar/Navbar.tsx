@@ -11,7 +11,6 @@ import Hamburger from "hamburger-react";
 
 // icons
 import { GrSettingsOption, GrLogout, GrLocationPin } from "react-icons/gr";
-import { userInfo } from "os";
 
 const Navbar = (): JSX.Element => {
 	const navigate = useNavigate();
@@ -30,13 +29,13 @@ const Navbar = (): JSX.Element => {
 	}, []);
 	//handlers
 
-	const logoClickHandler = (e: React.MouseEvent) => {
+	const logoClickHandler = (e: React.MouseEvent): void => {
 		navigate("/home");
 	};
-	const weatherClickHandler = (e: React.MouseEvent) => {
+	const weatherClickHandler = (e: React.MouseEvent): void => {
 		navigate("/weather");
 	};
-	const hamburgerHandler = (e: React.MouseEvent) => {
+	const hamburgerHandler = (e: React.MouseEvent): void => {
 		setOpen(!open);
 	};
 	const settingClickHandler = (e: React.MouseEvent): void => {
@@ -47,6 +46,9 @@ const Navbar = (): JSX.Element => {
 		localStorage.removeItem("coordinates");
 		localStorage.removeItem("info");
 
+		navigate("/");
+	};
+	const changeLocationHandler = (): void => {
 		navigate("/");
 	};
 	return (
@@ -69,7 +71,7 @@ const Navbar = (): JSX.Element => {
 						{open && (
 							<div className="navbar_container_right--mobile_list-container">
 								<ul className="navbar_container_right--mobile_list-container_list">
-									<li
+									{/* <li
 										onClick={logoClickHandler}
 										className="navbar_container_right--mobile_list-container_list_listitem"
 									>
@@ -81,8 +83,11 @@ const Navbar = (): JSX.Element => {
 										className="navbar_container_right--mobile_list-container_list_listitem"
 									>
 										weather
-									</li>
-									<li className="navbar_container_right--mobile_list-container_list_listitem">
+									</li> */}
+									<li
+										className="navbar_container_right--mobile_list-container_list_listitem"
+										onClick={changeLocationHandler}
+									>
 										Change Location
 									</li>
 									<li

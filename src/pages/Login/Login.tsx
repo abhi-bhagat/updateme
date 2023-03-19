@@ -23,6 +23,8 @@ const Login = (): JSX.Element => {
 
 	const API: string = process.env.REACT_APP_PLACE_API_KEY!;
 	const placesArray: FormattedPlace[] = [];
+	const name = localStorage.getItem("data");
+	console.log(typeof name);
 	//state upates
 	const [fname, setfname] = useState<string>("");
 	const [location, setLocation] = useState<string>("");

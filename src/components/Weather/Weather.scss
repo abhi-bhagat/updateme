@@ -8,10 +8,9 @@
 	border-radius: 0.5rem;
 	background-color: white;
 	height: 10rem;
-
+	max-height: 10rem;
+	overflow: scroll;
 	&_container {
-
-
 		&_title {
 			color: $accent_color;
 			height: 2rem;

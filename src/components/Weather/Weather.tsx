@@ -53,9 +53,9 @@ const Weather = (): JSX.Element => {
 					</span>
 				</p>
 				<p className="weather_container_footer">
-					<div className="weather_container_footer_description">
+					<p className="weather_container_footer_description">
 						{weatherData?.weather[0].main}
-					</div>{" "}
+					</p>{" "}
 					<span className="weather_container_footer_high">
 						H:{weatherData?.main.temp_max}
 					</span>
