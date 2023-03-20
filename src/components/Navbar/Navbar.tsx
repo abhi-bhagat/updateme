@@ -49,6 +49,10 @@ const Navbar = (): JSX.Element => {
 		navigate("/");
 	};
 	const changeLocationHandler = (): void => {
+		localStorage.setItem(
+			"data",
+			JSON.stringify({ name: user.name, place: "" })
+		);
 		navigate("/");
 	};
 	return (
@@ -130,7 +134,10 @@ const Navbar = (): JSX.Element => {
 							<div className="navbar_container_right--tablet_settings">
 								<div className="navbar_container_right--tablet_settings_triangle"></div>
 								<ul>
-									<li className="navbar_container_right--tablet_settings_list-item">
+									<li
+										className="navbar_container_right--tablet_settings_list-item"
+										onClick={changeLocationHandler}
+									>
 										<GrLocationPin className="navbar_container_right--tablet_settings_list-item_icon" />
 										change location
 									</li>

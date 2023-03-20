@@ -13,14 +13,6 @@ import loginBack from "../../assets/svg/loginBack.svg";
 const Login = (): JSX.Element => {
 	const navigate: NavigateFunction = useNavigate();
 
-	useEffect(() => {
-		const savedInfo = localStorage.getItem("data");
-
-		if (savedInfo !== null) {
-			navigate("/home");
-		}
-	});
-
 	const API: string = process.env.REACT_APP_PLACE_API_KEY!;
 	const placesArray: FormattedPlace[] = [];
 	const name = localStorage.getItem("data");
@@ -32,6 +24,23 @@ const Login = (): JSX.Element => {
 	const [placeToggler, setPlaceToggler] = useState<boolean>(false);
 	const [info, setInfo] = useState<FormattedPlace>();
 
+	useEffect(() => {
+		let savedInfo: UserData;
+		if (localStorage.getItem("data") !== null) {
+			savedInfo = JSON.parse(localStorage.getItem("data")!);
+			if (savedInfo.place === "") {
+				setfname(savedInfo.name);
+			} else {
+				navigate("/home");
+			}
+		}
+
+		// if (savedInfo !== null) {
+		// 	if (savedInfo.name !== null) {
+		// 	}
+		// } else {
+		// }
+	});
 	//get data
 	const getData = () => {
 		var config = {
